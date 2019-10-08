@@ -14,6 +14,9 @@
 		FCC6D577234BC76900BDAA5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCC6D575234BC76900BDAA5A /* LaunchScreen.storyboard */; };
 		FCC6D57A234BC76900BDAA5A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC6D579234BC76900BDAA5A /* main.m */; };
 		FCC6D589234BC8F800BDAA5A /* BBEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC6D588234BC8F800BDAA5A /* BBEntry.m */; };
+		FCC6D58F234BD0B700BDAA5A /* BBEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC6D58E234BD0B700BDAA5A /* BBEntryController.m */; };
+		FCC6D593234BD76800BDAA5A /* BBEntryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC6D592234BD76800BDAA5A /* BBEntryListTableViewController.m */; };
+		FCC6D596234BDE7300BDAA5A /* BBEntryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FCC6D595234BDE7300BDAA5A /* BBEntryDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,12 @@
 		FCC6D579234BC76900BDAA5A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FCC6D587234BC8F800BDAA5A /* BBEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBEntry.h; sourceTree = "<group>"; };
 		FCC6D588234BC8F800BDAA5A /* BBEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBEntry.m; sourceTree = "<group>"; };
+		FCC6D58D234BD0B700BDAA5A /* BBEntryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBEntryController.h; sourceTree = "<group>"; };
+		FCC6D58E234BD0B700BDAA5A /* BBEntryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBEntryController.m; sourceTree = "<group>"; };
+		FCC6D591234BD76800BDAA5A /* BBEntryListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBEntryListTableViewController.h; sourceTree = "<group>"; };
+		FCC6D592234BD76800BDAA5A /* BBEntryListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBEntryListTableViewController.m; sourceTree = "<group>"; };
+		FCC6D594234BDE7300BDAA5A /* BBEntryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BBEntryDetailViewController.h; sourceTree = "<group>"; };
+		FCC6D595234BDE7300BDAA5A /* BBEntryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBEntryDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +113,30 @@
 		FCC6D583234BC79E00BDAA5A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCC6D58C234BD08A00BDAA5A /* New Group */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FCC6D58C234BD08A00BDAA5A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				FCC6D58D234BD0B700BDAA5A /* BBEntryController.h */,
+				FCC6D58E234BD0B700BDAA5A /* BBEntryController.m */,
+				FCC6D590234BD74400BDAA5A /* View Controllers */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		FCC6D590234BD74400BDAA5A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FCC6D591234BD76800BDAA5A /* BBEntryListTableViewController.h */,
+				FCC6D592234BD76800BDAA5A /* BBEntryListTableViewController.m */,
+				FCC6D594234BDE7300BDAA5A /* BBEntryDetailViewController.h */,
+				FCC6D595234BDE7300BDAA5A /* BBEntryDetailViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +211,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCC6D569234BC76700BDAA5A /* AppDelegate.m in Sources */,
+				FCC6D596234BDE7300BDAA5A /* BBEntryDetailViewController.m in Sources */,
 				FCC6D57A234BC76900BDAA5A /* main.m in Sources */,
+				FCC6D593234BD76800BDAA5A /* BBEntryListTableViewController.m in Sources */,
+				FCC6D58F234BD0B700BDAA5A /* BBEntryController.m in Sources */,
 				FCC6D589234BC8F800BDAA5A /* BBEntry.m in Sources */,
 				FCC6D56C234BC76700BDAA5A /* SceneDelegate.m in Sources */,
 			);
