@@ -23,32 +23,37 @@
 
 - (IBAction)clearButtonTapped:(UIButton *)sender
 {
-    _entryTitleTextField.text = @"";
-    _bodyTextView.text = @"";
+    self.entryTitleTextField.text = @"";
+    self.bodyTextView.text = @"";
 }
 
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender
 {
-    if (_entry) {
-        [BBEntryController.sharedInstance udpate:_entry title:_entry.title body:_entry.bodyText];
+    if (self.entry) {
+        [BBEntryController.sharedInstance udpate:self.entry title:self.entry.title body:self.entry.bodyText];
     } else {
-        [BBEntryController.sharedInstance addEntryWith:_entryTitleTextField.text body:_bodyTextView.text];
+        [BBEntryController.sharedInstance addEntryWith:self.entryTitleTextField.text body:self.bodyTextView.text];
     }
     [self.navigationController popViewControllerAnimated:true];
 }
 
 - (void)updateViews
 {
-//    if (_entry) {
-        _entryTitleTextField.text = _entry.title;
-        _bodyTextView.text = _entry.bodyText;
-        self.title = _entry.title;
-//    }
+        self.entryTitleTextField.text = self.entry.title;
+        self.bodyTextView.text = self.entry.bodyText;
+        self.title = self.entry.title;
 }
 
 - (void)textFieldShouldReturn
 {
-    [_entryTitleTextField resignFirstResponder];
-    [_bodyTextView resignFirstResponder];
+    [self.entryTitleTextField resignFirstResponder];
+    [self.bodyTextView resignFirstResponder];
 }
+
+//- (void)updateWith:(BBEntry *)entry {
+//    [self loadViewIfNeeded];
+//    self.entryTitleTextField.text = entry.title;
+//    self.bodyTextView.text = entry.bodyText;
+//    self.entry = entry;
+//}
 @end

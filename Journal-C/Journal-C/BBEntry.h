@@ -22,4 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
                      bodyText:(NSString *) bodyText;
 @end
 
+@interface BBEntry (JSONConvertable)
+
+-(BBEntry *)initWithDictionary:(NSDictionary *)dictionary;
+-(NSDictionary *)dictionaryCopy;
+
+@end
+
+
 NS_ASSUME_NONNULL_END

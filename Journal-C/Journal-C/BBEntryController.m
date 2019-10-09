@@ -11,6 +11,18 @@
 
 @implementation BBEntryController
 
+-(instancetype)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        _entries = [NSMutableArray<BBEntry *> new];
+        [self loadFromPersistentStore];
+    }
+    return self;
+}
+
 + (BBEntryController *)sharedInstance {
     static BBEntryController *sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -23,43 +35,79 @@
 - (void)addEntryWith:(NSString *)title body:(NSString *)body
 {
     BBEntry *entry = [[BBEntry alloc] initWithTitle:title bodyText:body];
-    [_entries addObject:entry];
+    [self.entries addObject:entry];
+    [self saveToPersistentStore];
 }
 
 - (void)remove:(BBEntry *)entry
 {
-    [_entries removeObject:entry];
+    [self.entries removeObject:entry];
+    [self saveToPersistentStore];
 }
 
 - (void)udpate:(BBEntry *)entry title:(NSString *)title body:(NSString *)body
 {
     title = entry.title;
     body = entry.bodyText;
+    [self saveToPersistentStore];
 }
 
-
--(NSDictionary *)dictionaryCopy
++ (NSURL *)persistentStoreFileURL
 {
-    BBEntry *entry = [BBEntry alloc];
-    static NSString * const TimeStampKey = @"timestamp";
-    static NSString * const TitleKey = @"title";
-    static NSString * const BodyTextKey = @"bodyText";
-    
-    NSDictionary *journalDictionary = @{TimeStampKey : entry.timestamp, TitleKey : entry.title, BodyTextKey : entry.bodyText};
-    
-    return journalDictionary;
+    NSArray<NSURL *> *urls = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                                    inDomains:NSUserDomainMask];
+    return [urls[0] URLByAppendingPathComponent:@"journal.json"];
 }
 
--(void)saveToPersistentStorage
+- (void)saveToPersistentStore
 {
-    for(BBEntry * entry in _entries)
-    {
-        [self dictionaryCopy];
+    NSMutableArray *entriesToSave = [NSMutableArray<NSDictionary *> new];
+    
+    for (BBEntry *entry in self.entries) {
+        [entriesToSave addObject:[entry dictionaryCopy]];
     }
+    
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:entriesToSave
+                                                       options:kNilOptions
+                                                         error:&error];
+    if (error) {
+        NSLog(@"Unable to convert entries to JSON: %@", error);
+        return;
+    }
+    
+    NSURL *url = [BBEntryController persistentStoreFileURL];
+    [jsonData writeToURL:url atomically:YES];
 }
 
--(void)loadToPersistentStorage
+- (void)loadFromPersistentStore
 {
+    NSURL *url = [BBEntryController persistentStoreFileURL];
+    NSError *error;
+    NSData *data = [NSData dataWithContentsOfURL:url options:kNilOptions error:&error];
     
+    if (error) {
+        NSLog(@"Error loading JSON data from file: %@", error);
+        return;
+    }
+    
+    NSArray *rawEntries = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    
+    if (error) {
+        NSLog(@"Error converting JSON data to NSObject: %@", error);
+        return;
+    }
+    
+    NSMutableArray *newEntries = [NSMutableArray new];
+    
+    for (NSDictionary *entryDict in rawEntries) {
+        BBEntry *entry = [[BBEntry alloc] initWithDictionary:entryDict];
+        
+        if (entry) {
+            [newEntries addObject:entry];
+        }
+    }
+    
+    self.entries = [newEntries copy];
 }
 @end

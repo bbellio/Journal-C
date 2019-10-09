@@ -13,16 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BBEntryController : NSObject
 
+-(instancetype)init;
+
 + (BBEntryController *)sharedInstance;
 
-@property (nonatomic) NSMutableArray<BBEntry *> * entries;
+@property (nonatomic, strong) NSMutableArray<BBEntry *> *entries;
 
 - (void)addEntryWith:(NSString *)title body:(NSString *)body;
 - (void)remove:(BBEntry *)entry;
 - (void)udpate:(BBEntry *)entry title:(NSString *)title body:(NSString *)body;
-- (void)saveToPersistentStorage;
-- (void)loadToPersistentStorage;
-- (NSDictionary *)dictionaryCopy;
+- (void)saveToPersistentStore;
+- (void)loadFromPersistentStore;
 @end
 
 NS_ASSUME_NONNULL_END

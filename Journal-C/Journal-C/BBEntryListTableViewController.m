@@ -20,9 +20,10 @@
     [super viewDidLoad];
 }
 
-- (void)viewWillAppear
+// Make sure to include arguments
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
@@ -36,6 +37,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"entryCell" forIndexPath:indexPath];
     BBEntry * entry = BBEntryController.sharedInstance.entries[indexPath.row];
     cell.textLabel.text = entry.title;
+    NSDateFormatter *df = [NSDateFormatter new];
+    df.dateFormat = @"MM/d h:mm a";
+    cell.detailTextLabel.text = [df stringFromDate:entry.timestamp];
     return cell;
 }
 
@@ -50,12 +54,20 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"toDetailVC"]) {
+//    if ([segue.identifier isEqual:@"cellToDetailVC"]) {
+//            BBEntryDetailViewController *destinationVC = [segue destinationViewController];
+//            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//            BBEntry *entry = [BBEntryController sharedInstance].entries[indexPath.row];
+//            [destinationVC updateWith:entry];
+//        }
+//    }
+
+    if ([segue.identifier isEqual:@"toDetailVC"]) {
         NSIndexPath *index = [self.tableView indexPathForSelectedRow];
         BBEntryDetailViewController *destination = segue.destinationViewController;
         BBEntry *entry = BBEntryController.sharedInstance.entries[[index row]];
+//        [destination updateWith:entry];
         destination.entry = entry;
     }
 }
-
 @end
