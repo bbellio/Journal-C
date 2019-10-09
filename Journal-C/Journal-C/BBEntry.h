@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Title, bodyText, timestamp
 
-@property (nonatomic, copy, readonly) NSString * title;
-@property (nonatomic, copy, readonly) NSString * bodyText;
-@property (nonatomic, copy, readonly) NSDate * timestamp;
+@property (nonatomic, copy) NSString * title;
+@property (nonatomic, copy) NSString * bodyText;
+@property (nonatomic, copy) NSDate * timestamp;
 
 - (instancetype)initWithTitle:(NSString *) title
                      bodyText:(NSString *) bodyText;

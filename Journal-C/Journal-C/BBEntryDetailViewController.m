@@ -30,7 +30,7 @@
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender
 {
     if (self.entry) {
-        [BBEntryController.sharedInstance udpate:self.entry title:self.entry.title body:self.entry.bodyText];
+        [BBEntryController.sharedInstance udpate:self.entry title:self.entryTitleTextField.text body:self.bodyTextView.text];
     } else {
         [BBEntryController.sharedInstance addEntryWith:self.entryTitleTextField.text body:self.bodyTextView.text];
     }

@@ -47,8 +47,9 @@
 
 - (void)udpate:(BBEntry *)entry title:(NSString *)title body:(NSString *)body
 {
-    title = entry.title;
-    body = entry.bodyText;
+    entry.title = title;
+    entry.bodyText = body;
+    entry.timestamp = [NSDate new];
     [self saveToPersistentStore];
 }
 
@@ -108,6 +109,6 @@
         }
     }
     
-    self.entries = [newEntries copy];
+    self.entries = [newEntries mutableCopy];
 }
 @end

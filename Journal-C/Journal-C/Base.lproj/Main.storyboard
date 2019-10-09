@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Mw8-cL-rNp" kind="show" identifier="toDetailVC" trigger="accessoryAction" id="JEr-B9-20W"/>
+                                    <segue destination="Mw8-cL-rNp" kind="show" identifier="toDetailVC" id="pSK-vJ-PMO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -143,6 +143,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="JEr-B9-20W"/>
+        <segue reference="pSK-vJ-PMO"/>
     </inferredMetricsTieBreakers>
 </document>
